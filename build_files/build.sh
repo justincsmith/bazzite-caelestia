@@ -13,7 +13,7 @@ cp -avf "/ctx/system_files"/. /
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/43/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # this installs a package from fedora repos
-dnf5 install -y tmux
+# dnf5 install -y tmux
 
 # Use a COPR Example:
 #
@@ -22,6 +22,30 @@ dnf5 install -y tmux
 # Disable COPRs so they don't end up enabled on the final image:
 # dnf5 -y copr disable ublue-os/staging
 
+# Enable Caelestia dependency repositories
+dnf5 -y copr enable errornointernet/quickshell
+dnf5 -y copr enable celestelove/libcava
+dnf5 -y copr enable celestelove/app2unit
+dnf5 -y copr enable brycensranch/gpu-screen-recorder-git
+dnf5 -y copr enable celestelove/caelestia
+dnf5 -y copr enable lionheartp/Hyprland
+
+# Install Caelestia and dependencies
+dnf5 -y install quickshell-git
+dnf5 -y install libcava-devel
+dnf5 -y install app2unit
+dnf5 -y install gpu-screen-recorder-ui
+dnf5 -y install caelestia-shell caelestia-cli qtengine
+dnf5 -y install Hyprland
+
+# Disable Caelestia dependency repositories
+dnf5 -y copr disable errornointernet/quickshell
+dnf5 -y copr disable celestelove/libcava
+dnf5 -y copr disable celestelove/app2unit
+dnf5 -y copr disable brycensranch/gpu-screen-recorder-git
+dnf5 -y copr disable celestelove/caelestia
+dnf5 -y copr disable lionheartp/Hyprland
+
 #### Example for enabling a System Unit File
 
-systemctl enable podman.socket
+# systemctl enable podman.socket
