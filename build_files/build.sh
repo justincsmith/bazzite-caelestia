@@ -37,6 +37,7 @@ dnf5 -y install app2unit
 dnf5 -y install gpu-screen-recorder-ui
 dnf5 -y install caelestia-shell caelestia-cli qtengine
 dnf5 -y install Hyprland
+dnf5 -y install hyprland-guiutils
 
 # Disable Caelestia dependency repositories
 dnf5 -y copr disable errornointernet/quickshell
