@@ -29,6 +29,7 @@ dnf5 -y copr enable celestelove/app2unit
 dnf5 -y copr enable brycensranch/gpu-screen-recorder-git
 dnf5 -y copr enable celestelove/caelestia
 dnf5 -y copr enable lionheartp/Hyprland
+dnf5 -y copr enable imput/helium
 
 # Install Caelestia and dependencies
 dnf5 -y install quickshell-git
@@ -38,6 +39,16 @@ dnf5 -y install gpu-screen-recorder-ui
 dnf5 -y install caelestia-shell caelestia-cli qtengine
 dnf5 -y install Hyprland
 dnf5 -y install hyprland-guiutils
+dnf5 -y install hyprcursor
+dnf5 -y install hyprpolkitagent
+dnf5 -y install mpvpaper
+dnf5 -y install nwg-look
+
+# Install kitty terminal emulator
+dnf5 -y install kitty
+
+# Install helium web browser
+dnf5 -y install helium-bin
 
 # Disable Caelestia dependency repositories
 dnf5 -y copr disable errornointernet/quickshell
@@ -46,6 +57,7 @@ dnf5 -y copr disable celestelove/app2unit
 dnf5 -y copr disable brycensranch/gpu-screen-recorder-git
 dnf5 -y copr disable celestelove/caelestia
 dnf5 -y copr disable lionheartp/Hyprland
+dnf5 -y copr disable imput/helium
 
 #### Example for enabling a System Unit File
 
