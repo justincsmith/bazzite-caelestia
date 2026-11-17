@@ -48,7 +48,7 @@ dnf5 -y install nwg-look
 dnf5 -y install kitty
 
 # Install helium web browser
-dnf5 -y install helium-bin
+rpm-ostree install helium-bin
 
 # Disable Caelestia dependency repositories
 dnf5 -y copr disable errornointernet/quickshell
