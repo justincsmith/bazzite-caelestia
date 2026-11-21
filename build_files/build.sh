@@ -44,6 +44,7 @@ dnf5 -y install mpvpaper
 dnf5 -y install nwg-look
 dnf5 -y install qt6-qtshadertools
 dnf5 -y install qt6-qtmultimedia
+dnf5 -y install dex-autostart
 
 # Install kitty terminal emulator
 dnf5 -y install kitty
