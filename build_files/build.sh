@@ -42,6 +42,8 @@ dnf5 -y install hyprcursor
 dnf5 -y install hyprpolkitagent
 dnf5 -y install mpvpaper
 dnf5 -y install nwg-look
+dnf5 -y install qt6-qtshadertools
+dnf5 -y install qt6-qtmultimedia
 
 # Install kitty terminal emulator
 dnf5 -y install kitty
