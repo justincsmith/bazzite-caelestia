@@ -5,22 +5,20 @@ set -ouex pipefail
 # Copy the contents of system_files/ of the git repo to /
 cp -avf "/ctx/system_files"/. /
 
-### Install packages
+# Copy our source-compiled apps to their appropriate homes from the builder image
+# Flightdeck hyprland / caelestia settings
+cp -r "/bldr/usr/share/flightdeck" /usr/share/
+cp "/bldr/usr/share/applications/flightdeck.desktop" /usr/share/applications/
+cp "/bldr/usr/share/icons/hicolor/scalable/apps/flightdeck.svg" /usr/share/icons/hicolor/scalable/apps/
+cp "/bldr/usr/bin/flightdeck" /usr/bin/
 
-# Packages can be installed from any enabled yum repo on the image.
-# RPMfusion repos are available by default in ublue main images
-# List of rpmfusion packages can be found here:
-# https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/43/x86_64/repoview/index.html&protocol=https&redirect=1
+# Atlas file manager
+cp "/bldr/usr/share/applications/atlas.desktop" /usr/share/applications/
+cp "/bldr/usr/share/icons/hicolor/scalable/apps/atlas.svg" /usr/share/icons/hicolor/scalable/apps/
+cp "/bldr/usr/bin/atlas" /usr/bin/
 
-# this installs a package from fedora repos
-# dnf5 install -y tmux
-
-# Use a COPR Example:
-#
-# dnf5 -y copr enable ublue-os/staging
-# dnf5 -y install package
-# Disable COPRs so they don't end up enabled on the final image:
-# dnf5 -y copr disable ublue-os/staging
+# Airlock display manager
+cp "/bldr/usr/bin/astra-airlock" /usr/bin/
 
 # Enable dependency repositories
 dnf5 -y copr enable errornointernet/quickshell

@@ -3,6 +3,38 @@ FROM scratch AS ctx
 COPY build_files /
 COPY system_files /system_files
 
+# Builder image for apps we need to compile from source
+FROM docker.io/library/fedora:45 AS builder
+RUN dnf5 install -y \
+    git \
+    qmake \
+    ninja-build \
+    qt6-qtdeclarative-devel \
+    qt6-qtshadertools-devel \
+    qt6-qtquickcontrols2-devel \
+    qt6-qtmultimedia-devel \
+    qt6-qtsvg-devel \
+    cargo \
+    mold    
+    
+# Compile and install FlightDeck which helps configure hyprland/caelestia
+RUN git clone https://github.com/AstraSuite/FlightDeck.git /tmp/FlightDeck && \
+    cd /tmp/FlightDeck && \
+    cmake -B build -S . -G Ninja -DCMAKE_BUILD_TYPE=Release && \
+    cmake --build build && \
+    cmake --install build
+
+# Compile and install Airlock which is a login greeter for greetd
+RUN git clone https://github.com/AstraSuite/Airlock.git /tmp/Airlock && \
+    cd /tmp/Airlock && \
+    CARGO_HOME=/tmp/.cargo cargo build --release && \
+    install -Dm755 target/release/astra-airlock /usr/bin/astra-airlock
+
+RUN git clone https://github.com/AstraSuite/Atlas.git /tmp/Atlas && \
+    cd /tmp/Atlas && \
+    CARGO_HOME=/tmp/.cargo cargo build --release && \
+    make install PREFIX=/usr
+
 # Base Image
 FROM ghcr.io/ublue-os/bazzite-dx-gnome:stable
 ## Other possible base images include:
@@ -31,6 +63,7 @@ FROM ghcr.io/ublue-os/bazzite-dx-gnome:stable
 ## the following RUN directive does all the things required to run "build.sh" as recommended.
 
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
+    --mount=type=bind,from=builder,source=/,target=/bldr \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
