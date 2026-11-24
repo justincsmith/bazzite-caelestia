@@ -55,6 +55,12 @@ dnf5 -y copr disable brycensranch/gpu-screen-recorder-git
 dnf5 -y copr disable celestelove/caelestia
 dnf5 -y copr disable lionheartp/Hyprland
 
+# Hourly weather updates in caelestia dashboard
+git clone https://github.com/ItsXyzzy/Caelestia-Hourly-Weather.git /tmp/Caelestia-Hourly-Weather 
+cd /tmp/Caelestia-Hourly-Weather 
+mv /etc/xdg/quickshell/caelestia/modules/dashboard/WeatherTab.qml /etc/xdg/quickshell/caelestia/modules/dashboard/WeatherTab.qml.bak
+cp ./qml/modules/dashboard/WeatherTab.qml /etc/xdg/quickshell/caelestia/modules/dashboard/WeatherTab.qml
+
 #### Example for enabling a System Unit File
 
 # systemctl enable podman.socket
