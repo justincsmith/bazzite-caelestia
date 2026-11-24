@@ -61,6 +61,12 @@ cd /tmp/Caelestia-Hourly-Weather
 mv /etc/xdg/quickshell/caelestia/modules/dashboard/WeatherTab.qml /etc/xdg/quickshell/caelestia/modules/dashboard/WeatherTab.qml.bak
 cp ./qml/modules/dashboard/WeatherTab.qml /etc/xdg/quickshell/caelestia/modules/dashboard/WeatherTab.qml
 
+wget https://github.com/imputnet/helium-linux/releases/download/0.22.4.1/helium-0.22.4.1-x86_64_linux.tar.xz -O /tmp/helium-0.22.4.1-x86_64_linux.tar.xz
+tar -xvf /tmp/helium-0.22.4.1-x86_64_linux.tar.xz -C /usr/share/
+cp "/usr/share/helium-0.22.4.1-x86_64_linux/helium.desktop" /usr/share/applications/
+cp "/usr/share/helium-0.22.4.1-x86_64_linux/product_logo_256.png" /usr/share/icons/hicolor/256x256/apps/helium.png
+ln -s /usr/share/helium-0.22.4.1-x86_64_linux/helium /usr/bin/helium
+
 #### Example for enabling a System Unit File
 
 # systemctl enable podman.socket
