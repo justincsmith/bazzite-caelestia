@@ -5,10 +5,12 @@ COPY system_files /system_files
 
 # Builder image for apps we need to compile from source
 FROM docker.io/library/fedora:45 AS builder
+RUN dnf5 -y copr enable lionheartp/Hyprland
 RUN dnf5 install -y \
     git \
     qmake \
     ninja-build \
+    hyprland-devel \
     qt6-qtdeclarative-devel \
     qt6-qtshadertools-devel \
     qt6-qtquickcontrols2-devel \
@@ -16,7 +18,12 @@ RUN dnf5 install -y \
     qt6-qtsvg-devel \
     cargo \
     mold    
-    
+
+# Compile the hypr-seam rounded-corners plugin for caelestia/hyprland
+RUN git clone https://github.com/misaid/hypr-seam.git /tmp/hypr-seam && \
+    cd /tmp/hypr-seam && \
+    make all
+
 # Compile and install FlightDeck which helps configure hyprland/caelestia
 RUN git clone https://github.com/AstraSuite/FlightDeck.git /tmp/FlightDeck && \
     cd /tmp/FlightDeck && \

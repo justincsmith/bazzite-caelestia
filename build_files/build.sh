@@ -6,6 +6,9 @@ set -ouex pipefail
 cp -avf "/ctx/system_files"/. /
 
 # Copy our source-compiled apps to their appropriate homes from the builder image
+# hypr-seam plugin for hyprland
+cp "/bldr/tmp/hypr-seam/build/libhypr-seam.so" "/usr/lib/"
+
 # Flightdeck hyprland / caelestia settings
 cp -r "/bldr/usr/share/flightdeck" /usr/share/
 cp "/bldr/usr/share/applications/flightdeck.desktop" /usr/share/applications/
@@ -61,6 +64,7 @@ cd /tmp/Caelestia-Hourly-Weather
 mv /etc/xdg/quickshell/caelestia/modules/dashboard/WeatherTab.qml /etc/xdg/quickshell/caelestia/modules/dashboard/WeatherTab.qml.bak
 cp ./qml/modules/dashboard/WeatherTab.qml /etc/xdg/quickshell/caelestia/modules/dashboard/WeatherTab.qml
 
+# Helium web browser
 wget https://github.com/imputnet/helium-linux/releases/download/0.22.4.1/helium-0.22.4.1-x86_64_linux.tar.xz -O /tmp/helium-0.22.4.1-x86_64_linux.tar.xz
 tar -xvf /tmp/helium-0.22.4.1-x86_64_linux.tar.xz -C /usr/share/
 cp "/usr/share/helium-0.22.4.1-x86_64_linux/helium.desktop" /usr/share/applications/
