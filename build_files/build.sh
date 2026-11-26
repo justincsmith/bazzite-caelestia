@@ -71,6 +71,16 @@ cp "/usr/share/helium-0.22.4.1-x86_64_linux/helium.desktop" /usr/share/applicati
 cp "/usr/share/helium-0.22.4.1-x86_64_linux/product_logo_256.png" /usr/share/icons/hicolor/256x256/apps/helium.png
 ln -s /usr/share/helium-0.22.4.1-x86_64_linux/helium /usr/bin/helium
 
+# Plymouth themes
+wget https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/hexagon_dots.tar.gz -O /tmp/hexagon_dots.tar.gz
+tar -xvzf /tmp/hexagon_dots.tar.gz -C /usr/share/plymouth/themes/
+
+wget https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/loader_2.tar.gz -O /tmp/loader_2.tar.gz
+tar -xvzf /tmp/loader_2.tar.gz -C /usr/share/plymouth/themes/
+
+wget https://github.com/adi1090x/plymouth-themes/releases/download/v1.0/deus_ex.tar.gz -O /tmp/deus_ex.tar.gz
+tar -xvzf /tmp/deus_ex.tar.gz -C /usr/share/plymouth/themes/
+
 #### Example for enabling a System Unit File
 
 # systemctl enable podman.socket
